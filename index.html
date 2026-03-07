@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing - Restaurant</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="no-print">
+    <h1>Restaurant Billing</h1>
+    <nav>
+      <a href="index.html">Billing</a>
+      <a href="manage.html">Manage Menu</a>
+      <a href="report.html">Sales Report</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="hero no-print">
+      <h2>Today's Menu</h2>
+      <p>Tap an item to add to your bill</p>
+    </div>
+    <div class="billing-layout">
+      <section class="no-print">
+        <div class="menu-grid" id="menuGrid"></div>
+      </section>
+
+      <aside class="cart-panel">
+        <h2>Cart / Bill</h2>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-total" id="cartTotal" style="display: none;">Total: Rs. <span id="totalAmount">0</span></div>
+        <div class="cart-actions no-print">
+          <button type="button" class="btn-pay" id="btnPay" disabled>Pay now</button>
+          <button type="button" class="btn-print" id="btnPrint">Print bill</button>
+          <button type="button" class="btn-clear" id="btnClear">Clear cart</button>
+        </div>
+        <div class="print-only" id="printReceipt"></div>
+      </aside>
+    </div>
+  </main>
+
+  <div class="modal-overlay no-print" id="qrModal" style="display: none;" aria-hidden="true">
+    <div class="modal">
+      <h3>Pay now</h3>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.95rem;" id="qrMessage">Scan to pay</p>
+      <div class="qr-container" id="qrContainer"></div>
+      <div class="modal-actions">
+        <button type="button" id="btnDone">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/menu-data.js"></script>
+  <script src="js/billing.js"></script>
+  <script>
+    seedMenuIfEmpty();
+    Billing.init();
+  </script>
+</body>
+</html>

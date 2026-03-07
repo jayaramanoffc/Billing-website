@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales Report - Restaurant</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Monthly Sales Report</h1>
+    <nav>
+      <a href="index.html">Billing</a>
+      <a href="manage.html">Manage Menu</a>
+      <a href="report.html">Sales Report</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="report-summary">
+      <h2>Sales by month</h2>
+      <p style="color: var(--text-muted); margin-top: 0.5rem;">Orders completed via Pay now are included here.</p>
+    </div>
+    <div id="chartBars" class="chart-bars"></div>
+    <table class="report-table" id="reportTable">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Orders</th>
+          <th>Total sales (Rs.)</th>
+        </tr>
+      </thead>
+      <tbody id="reportBody"></tbody>
+    </table>
+    <p id="reportEmpty" style="display: none; color: var(--text-muted); margin-top: 1rem;">No orders yet. Complete a payment on the Billing page to see data here.</p>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/report.js"></script>
+  <script>
+    Report.init();
+  </script>
+</body>
+</html>
