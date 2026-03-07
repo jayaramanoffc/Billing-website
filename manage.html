@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Menu - Restaurant</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Manage Menu</h1>
+    <nav>
+      <a href="index.html">Billing</a>
+      <a href="manage.html">Manage Menu</a>
+      <a href="report.html">Sales Report</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="manage-header">
+      <div>
+        <h2>Manage Menu</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.25rem;">Add, edit, or remove items. Use Image URL or upload for real photos.</p>
+      </div>
+    </div>
+
+    <div class="form-panel" id="formPanel">
+      <h3 id="formTitle">Add item</h3>
+      <form id="menuForm">
+        <input type="hidden" id="itemId" name="id">
+        <div class="form-group">
+          <label for="itemName">Name</label>
+          <input type="text" id="itemName" name="name" required placeholder="e.g. Idly">
+        </div>
+        <div class="form-group">
+          <label for="itemPrice">Price (Rs.)</label>
+          <input type="number" id="itemPrice" name="price" required min="1" step="1" placeholder="30">
+        </div>
+        <div class="form-group">
+          <label for="itemImageUrl">Image URL (paste link from any website)</label>
+          <input type="url" id="itemImageUrl" name="imageUrl" placeholder="https://example.com/image.jpg">
+          <small style="color: var(--text-muted);">Paste a direct image link from any site. Optional.</small>
+        </div>
+        <div class="form-group">
+          <label for="itemImage">Or upload image file</label>
+          <input type="file" id="itemImage" name="image" accept="image/*">
+          <small style="color: var(--text-muted);">Upload overrides URL above if both set.</small>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn" id="btnCancelForm">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="manage-list" id="manageList"></div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/menu-data.js"></script>
+  <script src="js/manage.js"></script>
+  <script>
+    seedMenuIfEmpty();
+    ManageMenu.init();
+  </script>
+</body>
+</html>

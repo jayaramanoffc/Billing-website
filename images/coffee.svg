@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="200" height="150">
+  <defs>
+    <linearGradient id="coffeeg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#6f4e37"/><stop offset="100%" style="stop-color:#3e2723"/></linearGradient>
+    <linearGradient id="steel" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#c0c0c0"/><stop offset="100%" style="stop-color:#808080"/></linearGradient>
+    <linearGradient id="foam" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#8B4513"/><stop offset="100%" style="stop-color:#654321"/></linearGradient>
+  </defs>
+  <rect width="200" height="150" fill="#faf8f5"/>
+  <ellipse cx="100" cy="95" rx="40" ry="12" fill="url(#steel)"/>
+  <path d="M65 95 L65 55 Q65 45 75 42 L125 42 Q135 45 135 55 L135 95" fill="url(#steel)" stroke="#a0a0a0" stroke-width="1"/>
+  <ellipse cx="100" cy="52" rx="28" ry="8" fill="url(#coffeeg)"/>
+  <ellipse cx="100" cy="48" rx="22" ry="5" fill="url(#foam)"/>
+  <text x="100" y="28" text-anchor="middle" fill="#1b4332" font-family="sans-serif" font-size="16" font-weight="700">Coffee</text>
+</svg>
