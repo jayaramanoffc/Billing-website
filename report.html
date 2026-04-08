@@ -21,6 +21,11 @@
       <h2>Sales by month</h2>
       <p style="color: var(--text-muted); margin-top: 0.5rem;">Orders completed via Pay now are included here.</p>
     </div>
+    <div class="report-controls no-print" style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap; margin: 0.75rem 0 1rem;">
+      <label for="monthSelect" style="color: var(--text-muted); font-weight: 600;">Month</label>
+      <input type="month" id="monthSelect" />
+      <button type="button" class="btn btn-primary" id="btnDownloadMonth">Download (CSV)</button>
+    </div>
     <div id="chartBars" class="chart-bars"></div>
     <table class="report-table" id="reportTable">
       <thead>
@@ -32,6 +37,22 @@
       </thead>
       <tbody id="reportBody"></tbody>
     </table>
+    <div class="report-details" id="reportDetails" style="margin-top: 1.25rem; display:none;">
+      <div class="report-summary" style="margin-bottom:0.75rem;">
+        <h2 id="detailsTitle" style="font-size: 1.25rem;">Month details</h2>
+        <p id="detailsOverall" style="color: var(--text-muted); margin-top: 0.35rem;"></p>
+      </div>
+      <table class="report-table" id="dailyTable">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Items bought</th>
+            <th>Day sales (Rs.)</th>
+          </tr>
+        </thead>
+        <tbody id="dailyBody"></tbody>
+      </table>
+    </div>
     <p id="reportEmpty" style="display: none; color: var(--text-muted); margin-top: 1rem;">No orders yet. Complete a payment on the Billing page to see data here.</p>
   </main>
 

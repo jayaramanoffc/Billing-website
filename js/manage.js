@@ -14,11 +14,31 @@ const ManageMenu = {
     this.inputImageUrl = document.getElementById('itemImageUrl');
     this.inputImage = document.getElementById('itemImage');
 
+    this.editModal = document.getElementById('editModal');
+    this.editForm = document.getElementById('editForm');
+    this.editInputId = document.getElementById('editItemId');
+    this.editInputName = document.getElementById('editItemName');
+    this.editInputPrice = document.getElementById('editItemPrice');
+    this.editInputImageUrl = document.getElementById('editItemImageUrl');
+    this.editInputImage = document.getElementById('editItemImage');
+
     this.form.addEventListener('submit', (e) => this.save(e));
     document.getElementById('btnCancelForm').addEventListener('click', () => this.cancelEdit());
     this.inputImage.addEventListener('change', (e) => this.previewImage(e));
 
+    if (this.editForm) this.editForm.addEventListener('submit', (e) => this.saveEditModal(e));
+    const btnClose = document.getElementById('btnCloseEditModal');
+    if (btnClose) btnClose.addEventListener('click', () => this.closeEditModal());
+    if (this.editInputImage) this.editInputImage.addEventListener('change', (e) => this.previewEditImage(e));
+    window.addEventListener('hashchange', () => this.openEditFromHash());
+    if (this.editModal) {
+      this.editModal.addEventListener('click', (e) => {
+        if (e.target === this.editModal) this.closeEditModal();
+      });
+    }
+
     this.renderList();
+    this.openEditFromHash();
   },
 
   getMenu() {
@@ -49,7 +69,7 @@ const ManageMenu = {
     this.listEl.querySelectorAll('[data-action="edit"]').forEach(btn => {
       btn.addEventListener('click', () => {
         const id = btn.closest('.manage-item').dataset.id;
-        this.startEdit(id);
+        location.hash = 'edit=' + encodeURIComponent(id);
       });
     });
     this.listEl.querySelectorAll('[data-action="delete"]').forEach(btn => {
@@ -73,6 +93,43 @@ const ManageMenu = {
     this.inputImage.dataset.dataUrl = item.imageUrl || '';
     if (this.inputImageUrl) {
       this.inputImageUrl.value = (item.imageUrl && item.imageUrl.startsWith('http')) ? item.imageUrl : '';
+    }
+  },
+
+  openEditFromHash() {
+    const hash = (location.hash || '').replace(/^#/, '');
+    if (!hash.startsWith('edit=')) return;
+    const id = decodeURIComponent(hash.slice(5));
+    if (id) this.openEditModal(id);
+  },
+
+  openEditModal(id) {
+    if (!this.editModal) return;
+    const menu = this.getMenu();
+    const item = menu.find(m => m.id === id);
+    if (!item) return;
+    this.editingId = id;
+    document.getElementById('editModalTitle').textContent = 'Edit item';
+    this.editInputId.value = item.id;
+    this.editInputName.value = item.name;
+    this.editInputPrice.value = item.price;
+    if (this.editInputImageUrl) {
+      this.editInputImageUrl.value = (item.imageUrl && item.imageUrl.startsWith('http')) ? item.imageUrl : '';
+    }
+    if (this.editInputImage) {
+      this.editInputImage.value = '';
+      this.editInputImage.dataset.dataUrl = item.imageUrl || '';
+    }
+    this.editModal.style.display = 'flex';
+    this.editModal.setAttribute('aria-hidden', 'false');
+  },
+
+  closeEditModal() {
+    if (!this.editModal) return;
+    this.editModal.style.display = 'none';
+    this.editModal.setAttribute('aria-hidden', 'true');
+    if ((location.hash || '').replace(/^#/, '').startsWith('edit=')) {
+      history.replaceState(null, '', location.pathname + location.search);
     }
   },
 
@@ -126,12 +183,49 @@ const ManageMenu = {
     this.renderList();
   },
 
+  saveEditModal(e) {
+    e.preventDefault();
+    if (!this.editingId) return;
+    const name = this.editInputName.value.trim();
+    const price = parseInt(this.editInputPrice.value, 10);
+    if (!name || isNaN(price) || price < 1) return;
+
+    let imageUrl = (this.editInputImageUrl && this.editInputImageUrl.value.trim()) || '';
+    const file = this.editInputImage && this.editInputImage.files && this.editInputImage.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        imageUrl = reader.result;
+        this.doSave(name, price, imageUrl);
+        this.closeEditModal();
+      };
+      reader.readAsDataURL(file);
+    } else {
+      if (!imageUrl && this.editInputImage && this.editInputImage.dataset.dataUrl) {
+        imageUrl = this.editInputImage.dataset.dataUrl;
+      }
+      this.doSave(name, price, imageUrl);
+      this.closeEditModal();
+    }
+  },
+
   previewImage(e) {
     const file = e.target.files && e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
         this.inputImage.dataset.dataUrl = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  },
+
+  previewEditImage(e) {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.editInputImage.dataset.dataUrl = reader.result;
       };
       reader.readAsDataURL(file);
     }

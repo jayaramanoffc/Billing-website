@@ -56,6 +56,37 @@
     <div class="manage-list" id="manageList"></div>
   </main>
 
+  <div class="modal-overlay" id="editModal" style="display: none;" aria-hidden="true">
+    <div class="modal manage-edit-modal">
+      <h3 id="editModalTitle">Edit item</h3>
+      <form id="editForm">
+        <input type="hidden" id="editItemId" name="id">
+        <div class="form-group">
+          <label for="editItemName">Name</label>
+          <input type="text" id="editItemName" name="name" required placeholder="e.g. Idly">
+        </div>
+        <div class="form-group">
+          <label for="editItemPrice">Price (Rs.)</label>
+          <input type="number" id="editItemPrice" name="price" required min="1" step="1" placeholder="30">
+        </div>
+        <div class="form-group">
+          <label for="editItemImageUrl">Image URL</label>
+          <input type="url" id="editItemImageUrl" name="imageUrl" placeholder="https://example.com/image.jpg">
+          <small style="color: var(--text-muted);">Optional. Use a direct image link.</small>
+        </div>
+        <div class="form-group">
+          <label for="editItemImage">Or upload image file</label>
+          <input type="file" id="editItemImage" name="image" accept="image/*">
+          <small style="color: var(--text-muted);">Upload overrides URL above if both set.</small>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn" id="btnCloseEditModal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script src="js/storage.js"></script>
   <script src="js/menu-data.js"></script>
   <script src="js/manage.js"></script>

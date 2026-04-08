@@ -45,6 +45,28 @@
     </div>
   </main>
 
+  <div class="modal-overlay no-print" id="addConfirmModal" style="display: none;" aria-hidden="true">
+    <div class="modal confirm-modal">
+      <h3 id="confirmTitle">Add to cart?</h3>
+      <div class="confirm-body">
+        <img id="confirmImg" alt="" />
+        <div class="confirm-meta">
+          <div class="confirm-name" id="confirmName"></div>
+          <div class="confirm-price" id="confirmPrice"></div>
+          <div class="confirm-qty">
+            <button type="button" class="qty-btn" id="btnQtyMinus" aria-label="Decrease">−</button>
+            <span id="confirmQty">1</span>
+            <button type="button" class="qty-btn" id="btnQtyPlus" aria-label="Increase">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions confirm-actions">
+        <button type="button" class="btn" id="btnConfirmCancel">Cancel</button>
+        <button type="button" class="btn btn-primary" id="btnConfirmAdd">Confirm</button>
+      </div>
+    </div>
+  </div>
+
   <div class="modal-overlay no-print" id="qrModal" style="display: none;" aria-hidden="true">
     <div class="modal">
       <h3>Pay now</h3>
@@ -52,6 +74,18 @@
       <div class="qr-container" id="qrContainer"></div>
       <div class="modal-actions">
         <button type="button" id="btnDone">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay no-print" id="reviewModal" style="display:none;" aria-hidden="true">
+    <div class="modal confirm-modal">
+      <h3>How was your experience?</h3>
+      <p style="text-align:center; color: var(--text-muted); margin-bottom:0.75rem;">Rate the items you ordered.</p>
+      <div id="reviewItems" class="review-items"></div>
+      <div class="modal-actions confirm-actions">
+        <button type="button" class="btn" id="btnReviewSkip">Skip</button>
+        <button type="button" class="btn btn-primary" id="btnReviewSubmit">Submit</button>
       </div>
     </div>
   </div>

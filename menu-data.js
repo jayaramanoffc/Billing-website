@@ -21,16 +21,16 @@ var PAROTTA_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150"
 var PAZHAMPORI_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="200" height="150"><defs><linearGradient id="fritter" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#daa520"/><stop offset="100%" style="stop-color:#8b6914"/></linearGradient></defs><rect width="200" height="150" fill="#faf8f5"/><ellipse cx="100" cy="98" rx="75" ry="26" fill="#f5f5dc"/><ellipse cx="75" cy="90" rx="22" ry="14" fill="url(#fritter)"/><ellipse cx="100" cy="92" rx="24" ry="15" fill="url(#fritter)"/><ellipse cx="125" cy="88" rx="20" ry="13" fill="url(#fritter)"/><text x="100" y="25" text-anchor="middle" fill="#1b4332" font-family="sans-serif" font-size="14" font-weight="700">Pazhampori</text></svg>';
 
 var DEFAULT_MENU = [
-  { id: 'idly', name: 'Idly', price: 30, imageUrl: svgDataUri(IDLY_SVG) },
-  { id: 'puttu', name: 'Puttu', price: 40, imageUrl: svgDataUri(PUTTU_SVG) },
-  { id: 'poori', name: 'Poori', price: 35, imageUrl: svgDataUri(POORI_SVG) },
-  { id: 'coffee', name: 'Coffee', price: 20, imageUrl: svgDataUri(COFFEE_SVG) },
-  { id: 'dosai', name: 'Dosai', price: 45, imageUrl: svgDataUri(DOSAI_SVG) },
-  { id: 'parotta', name: 'Parotta', price: 25, imageUrl: svgDataUri(PAROTTA_SVG) },
-  { id: 'pazhampori', name: 'Pazhampori', price: 30, imageUrl: svgDataUri(PAZHAMPORI_SVG) }
+  { id: 'idly',       name: 'Idly',       price: 30, imageUrl: 'images/idly.png' },
+  { id: 'puttu',      name: 'Puttu',      price: 40, imageUrl: 'images/puttu.jpg' },
+  { id: 'poori',      name: 'Poori',      price: 35, imageUrl: 'images/poori.jpg' },
+  { id: 'coffee',     name: 'Coffee',     price: 20, imageUrl: 'images/coffee.jpg' },
+  { id: 'dosai',      name: 'Dosai',      price: 45, imageUrl: 'images/dosai.jpg' },
+  { id: 'parotta',    name: 'Parotta',    price: 25, imageUrl: 'images/parotta.jpg' },
+  { id: 'pazhampori', name: 'Pazhampori', price: 30, imageUrl: 'images/pazhampori.jpg' }
 ];
 
-var MENU_VERSION = 2;
+var MENU_VERSION = 4;
 
 function seedMenuIfEmpty() {
   if (typeof Storage === 'undefined') return;
